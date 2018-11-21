@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <!--在控制台输出日志，配置名称是consoleLog-->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d - %msg%n
+            </pattern>
+        </layout>
+    </appender>
+
+
+    <!-- 定义日志文件 输入位置 -->
+    <property name="log_dir" value="F:/Projects/JavaWebProjects/Log_file/sell" />
+    <!--将日志输出到文件中-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--文件存储路径-->
+            <fileNamePattern>
+                ${log_dir}/%d{yyyy-MM-dd}/sell_log.log
+            </fileNamePattern>
+        </rollingPolicy>
+
+    </appender>
+
+
+
+    <root level="info">
+        <!--使用consoleLog配置-->
+        <appender-ref ref="consoleLog" />
+        <!--使用fileInfoLog-->
+        <appender-ref ref="fileInfoLog"/>
+    </root>
+</configuration>
